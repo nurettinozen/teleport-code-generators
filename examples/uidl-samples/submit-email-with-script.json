@@ -1,0 +1,221 @@
+{
+  "$schema": "https://raw.githubusercontent.com/teleporthq/teleport-code-generators/master/src/uidl-definitions/schemas/project.json",
+  "name": "myVueProject",
+  "globals": {
+    "settings": {
+      "language": "en",
+      "title": "UIDL v0.6 Project"
+    },
+    "assets": [{
+      "type": "script",
+      "path": "/static/custom-script.js"
+    }],
+    "meta": []
+  },
+  "root": {
+    "name": "App",
+    "stateDefinitions": {
+      "route": {
+        "type": "string",
+        "defaultValue": "index",
+        "values": [
+          {
+            "value": "index",
+            "meta": {
+              "path": "/",
+              "componentName": "Home"
+            }
+          },
+          {
+            "value": "thank-you",
+            "meta": {
+              "path": "/thank-you",
+              "componentName": "ThankYou"
+            }
+          }
+        ]
+      }
+    },
+    "node": {
+      "type": "element",
+      "content": {
+        "elementType": "Router",
+        "children": [
+          {
+            "type": "conditional",
+            "content": {
+              "node": {
+                "type": "element",
+                "content": {
+                  "elementType": "container",
+                  "style": {
+                    "border": {
+                      "type": "static",
+                      "content": "1px solid black"
+                    },
+                    "padding": {
+                      "type": "static",
+                      "content": "1px solid black"
+                    }
+                  },
+                  "children": [
+                    {
+                      "type": "element",
+                      "content": {
+                        "elementType": "SubmitEmail",
+                        "attrs": {
+                          "name": { "type" : "static", "content": "Join us" }
+                        },
+                        "dependency": {
+                          "type": "local"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "value": "index",
+              "reference": {
+                "type": "dynamic",
+                "content": {
+                  "referenceType": "state",
+                  "id": "route"
+                }
+              }
+            }
+          },
+          {
+            "type": "conditional",
+            "content": {
+              "node": {
+                "type": "element",
+                "content": {
+                  "elementType": "container",
+                  "style": {
+                    "border": {
+                      "type": "static",
+                      "content": "1px solid black"
+                    },
+                    "padding": {
+                      "type": "static",
+                      "content": "1px solid black"
+                    }
+                  },
+                  "children": [
+                    {
+                      "type": "element",
+                      "content": {
+                        "elementType": "text",
+                        "children": [{
+                          "type" : "static", "content": "Thanks for joining us. We'll keep in touch."
+                        }]
+                      }
+                    }
+                  ]
+                }
+              },
+              "value": "thank-you",
+              "reference": {
+                "type": "dynamic",
+                "content": {
+                  "referenceType": "state",
+                  "id": "route"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "SubmitEmail": {
+      "name": "Submit Email",
+      "propDefinitions": {
+        "title": {
+          "type": "string",
+          "defaultValue": "Hello"
+        },
+        "items": {
+          "type": "array",
+          "defaultValue": []
+        }
+      },
+      "stateDefinitions": {
+        "isVisible": {
+          "type": "boolean",
+          "defaultValue": true
+        }
+      },
+      "node": {
+        "type": "element",
+        "content": {
+          "elementType": "container",
+          "attrs": {
+            "data-static-attr": {
+              "type": "static",
+              "content": "test"
+            },
+            "data-dynamic-attr": {
+              "type": "dynamic",
+              "content": {
+                "referenceType": "prop",
+                "id": "title"
+              }
+            }
+          },
+          "children": [
+            {
+              "type": "element",
+              "content": {
+                "elementType": "text",
+                "children": [
+                  {
+                    "type": "static",
+                    "content": "Let's keep in touch"
+                  }
+                 
+                ]
+              }
+            },
+            {
+              "type": "element",
+              "content": {
+                "elementType": "input",
+                "attrs": {
+                  "type": {
+                    "type": "static",
+                    "content": "email"
+                  },
+                  "data-email-input": {
+                    "type": "static",
+                    "contnet": ""
+                  }
+                }
+              }
+            },
+            {
+              "type": "element",
+              "content": {
+                "elementType": "button",
+                "attrs": {
+                  "data-submit-email": {
+                    "type": "static",
+                    "contnet": ""
+                  }
+                },
+                "children": [
+                  {
+                    "type": "static",
+                    "content": "Subscribe"
+                  }
+                 
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
