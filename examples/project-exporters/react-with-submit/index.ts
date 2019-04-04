@@ -3,7 +3,7 @@ import path from 'path'
 import { removeDir, copyDirRec, readJSON, writeFolder } from '../utils/path-utils'
 
 // @ts-ignore
-import projectJson from '../../uidl-samples/submit-email-with-script.json'
+import projectJson from '../../uidl-samples/submit-email-with-script'
 
 import { createReactNextGenerator } from '../../../src'
 
@@ -15,6 +15,7 @@ const writeToDisk = async (
   templatePath: string = 'project-template',
   distPath: string = 'dist'
 ) => {
+  // console.log(JSON.stringify(projectUIDL, null, 2))
   await removeDir(path.join(__dirname, distPath))
   await copyDirRec(templatePath, path.join(__dirname, distPath))
   const packageJsonTemplate = path.join(templatePath, 'package.json')

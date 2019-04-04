@@ -27,6 +27,7 @@ export const createPlugin: ComponentPluginFactory<StyledJSXConfig> = (config) =>
 
     traverseElements(node, (element) => {
       const { style, key } = element
+
       if (style) {
         const root = jsxNodesLookup[key]
         const className = cammelCaseToDashCase(key)

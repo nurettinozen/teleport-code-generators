@@ -48,27 +48,54 @@
                 "type": "element",
                 "content": {
                   "elementType": "container",
-                  "style": {
-                    "border": {
-                      "type": "static",
-                      "content": "1px solid black"
-                    },
-                    "padding": {
-                      "type": "static",
-                      "content": "1px solid black"
-                    }
-                  },
                   "children": [
                     {
                       "type": "element",
                       "content": {
-                        "elementType": "SubmitEmail",
+                        "elementType": "LandingContainer",
+                        "dependency": {
+                          "type": "local"
+                        },
+                        "children": [
+                          {
+                            "type": "element",
+                            "content": {
+                              "elementType": "text",
+                              "attrs": {
+                                "name": { "type" : "static", "content": "Some Text Here" }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "element",
+                      "content": {
+                        "elementType": "LandingContainer",
                         "attrs": {
-                          "name": { "type" : "static", "content": "Join us" }
+                          "landingImage": {
+                            "type": "static",
+                            "content": "url(static/landing-photo-2.jpg)"
+                          }
                         },
                         "dependency": {
                           "type": "local"
-                        }
+                        },
+                        "children": [
+                          {
+                            "type": "element",
+                            "content": {
+                              "elementType": "SubmitEmail",
+                              "attrs": {
+                                "name": { "type" : "static", "content": "Join us" }
+                              },
+                              "dependency": {
+                                "type": "local"
+                              }
+                            }
+                          }
+                        ]
                       }
                     }
                   ]
@@ -129,6 +156,46 @@
     }
   },
   "components": {
+    "LandingContainer": {
+      "propDefinitions": {
+        "landingImage": {
+          "defaultValue": "url(static/landing-photo.jpg)",
+          "type": "string"
+        }
+      },
+      "name": "LandingContainer",
+      "node": {
+        "type": "element",
+        "content": {
+          "elementType": "container",
+          "style": {
+            "backgroundImage": { 
+              "type": "dynamic", 
+              "content": { "referenceType": "prop", "id": "landingImage" } 
+            },
+
+            "backgroundSize": { "type": "static", "content": "cover" },
+            "backgroundColor": { "type": "static", "content": "#232323" },
+            "backgroundPosition": { "type": "static", "content": "center center" },
+
+
+            "width": { "type": "static", "content": "100%" },
+            "height": { "type": "static", "content": "100vh" },
+
+            "display": { "type": "static", "content": "flex" },
+            "alignItems": { "type": "static", "content": "center" },
+            "justifyContent": { "type": "static", "content": "center" }
+          },
+          "children": [{
+            "type": "dynamic",
+            "content": {
+              "referenceType": "prop",
+              "id": "children"
+            }
+          }]
+        }
+      }
+    },
     "SubmitEmail": {
       "name": "Submit Email",
       "propDefinitions": {
