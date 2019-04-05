@@ -6,10 +6,15 @@
       "language": "en",
       "title": "UIDL v0.6 Project"
     },
-    "assets": [{
-      "type": "script",
-      "path": "/static/custom-script.js"
-    }],
+    "assets": [
+      {
+        "type": "script",
+        "path": "/static/custom-script.js"
+      },
+      {
+        "type": "style",
+        "path": "https://necolas.github.io/normalize.css/8.0.1/normalize.css"
+      }],
     "meta": []
   },
   "root": {
