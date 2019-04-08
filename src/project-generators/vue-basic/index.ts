@@ -19,6 +19,14 @@ import { createRouterFile, buildFolderStructure } from './utils'
 import { extractRoutes } from '../../shared/utils/uidl-utils'
 import { Validator } from '../../core'
 
+import {
+  ProjectGeneratorOptions,
+  ComponentGenerator,
+  ComponentFactoryParams,
+  GeneratedFile,
+} from '../../typings/generators'
+import { ProjectUIDL, Mapping, ComponentUIDL } from '../../typings/uidl-definitions'
+
 const initGenerator = (options: ProjectGeneratorOptions): ComponentGenerator => {
   const vueGenerator = createVueGenerator({
     mapping: vueProjectMapping as Mapping,
@@ -41,7 +49,7 @@ const createVueBasicGenerator = (generatorOptions: ProjectGeneratorOptions = {})
 
   const generateProject = async (uidl: ProjectUIDL, options: ProjectGeneratorOptions = {}) => {
     // Step 0: Validate project UIDL
-    if (options.skipValidation) {
+    if (!options.skipValidation) {
       const validationResult = validator.validateProject(uidl)
       if (!validationResult.valid) {
         throw new Error(validationResult.errorMsg)

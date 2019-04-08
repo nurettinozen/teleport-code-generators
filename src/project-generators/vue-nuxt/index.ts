@@ -21,6 +21,14 @@ import {
 import { extractRoutes } from '../../shared/utils/uidl-utils'
 import { Validator } from '../../core'
 
+import {
+  ProjectGeneratorOptions,
+  ComponentGenerator,
+  ComponentFactoryParams,
+  GeneratedFile,
+} from '../../typings/generators'
+import { ProjectUIDL, ComponentUIDL, Mapping } from '../../typings/uidl-definitions'
+
 const initGenerator = (options: ProjectGeneratorOptions): ComponentGenerator => {
   const vueGenerator = createVueGenerator({
     mapping: nuxtMapping as Mapping,
@@ -43,7 +51,7 @@ const createVueNuxtGenerator = (generatorOptions: ProjectGeneratorOptions = {}) 
 
   const generateProject = async (uidl: ProjectUIDL, options: ProjectGeneratorOptions = {}) => {
     // Step 0: Validate project UIDL
-    if (options.skipValidation) {
+    if (!options.skipValidation) {
       const validationResult = validator.validateProject(uidl)
       if (!validationResult.valid) {
         throw new Error(validationResult.errorMsg)

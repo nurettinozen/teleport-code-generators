@@ -11,6 +11,16 @@ import { prefixPlaygroundAssetsURL, extractPageMetadata } from './uidl-utils'
 import { slugify } from './string-utils'
 import { FILE_TYPE } from '../constants'
 
+import {
+  GeneratedFile,
+  PackageJSON,
+  ComponentFactoryParams,
+  ComponentGeneratorOutput,
+  GeneratedFolder,
+} from '../../typings/generators'
+
+import { ProjectUIDL, WebManifest, ComponentUIDL } from '../../typings/uidl-definitions'
+
 interface HtmlIndexFileOptions {
   assetsPrefix?: string
   fileName?: string
@@ -213,12 +223,13 @@ export const createComponentOutputs = async (
   try {
     const compiledComponent = await componentGenerator.generateComponent(componentUIDL, {
       ...componentOptions,
+      skipValidation: true,
     })
 
     files = compiledComponent.files
     dependencies = compiledComponent.dependencies
   } catch (error) {
-    console.warn(`Error on generating ${componentUIDL.name} component ${error.stack}`)
+    console.warn(`Error on generating ${componentUIDL.name} component\n ${error.stack}`)
   }
 
   return { files, dependencies }

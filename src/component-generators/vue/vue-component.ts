@@ -17,6 +17,14 @@ import {
 import vueMapping from './vue-mapping.json'
 import { buildVueFile } from './utils'
 
+import {
+  GeneratorOptions,
+  ComponentGenerator,
+  CompiledComponent,
+  GeneratedFile,
+} from '../../typings/generators'
+import { ComponentUIDL, Mapping } from '../../typings/uidl-definitions'
+
 const createVueGenerator = ({ mapping }: GeneratorOptions = { mapping }): ComponentGenerator => {
   const validator = new Validator()
   const resolver = new Resolver([htmlMapping as Mapping, vueMapping as Mapping, mapping])
@@ -32,7 +40,7 @@ const createVueGenerator = ({ mapping }: GeneratorOptions = { mapping }): Compon
     uidl: ComponentUIDL,
     options: GeneratorOptions = {}
   ): Promise<CompiledComponent> => {
-    if (options.skipValidation) {
+    if (!options.skipValidation) {
       const validationResult = validator.validateComponent(uidl)
       if (!validationResult.valid) {
         throw new Error(validationResult.errorMsg)

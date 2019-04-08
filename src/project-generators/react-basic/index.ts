@@ -24,6 +24,14 @@ import {
 
 import { Validator } from '../../core'
 
+import {
+  ComponentGenerator,
+  ComponentFactoryParams,
+  ProjectGeneratorOptions,
+  GeneratedFile,
+} from '../../typings/generators'
+import { ProjectUIDL, ComponentUIDL, Mapping } from '../../typings/uidl-definitions'
+
 const initGenerator = (options: ProjectGeneratorOptions): ComponentGenerator => {
   const reactGenerator = createReactGenerator({
     variation: ReactComponentStylingFlavors.CSSModules,
@@ -47,7 +55,7 @@ const createReactBasicGenerator = (generatorOptions: ProjectGeneratorOptions = {
 
   const generateProject = async (uidl: ProjectUIDL, options: ProjectGeneratorOptions = {}) => {
     // Step 0: Validate project UIDL
-    if (options.skipValidation) {
+    if (!options.skipValidation) {
       const validationResult = validator.validateProject(uidl)
       if (!validationResult.valid) {
         throw new Error(validationResult.errorMsg)
