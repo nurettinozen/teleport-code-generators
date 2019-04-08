@@ -99,6 +99,83 @@
                                 "type": "local"
                               }
                             }
+                          },
+                          {
+                            "type": "element",
+                            "content": {
+                              "elementType": "form",
+                              "name": "form",
+                              "attrs": {
+                                "type": { "type":"static", "content": "GET"},
+                                "url": { "type":"static", "content": "/"}
+                              },
+                              "children": [
+                                {
+                                  "type": "element",
+                                  "content": {
+                                    "elementType": "container",
+                                    "name": "email-group",
+                                    "children": [
+                                      { 
+                                        "type": "element",
+                                        "content" : {
+                                          "elementType": "label",
+                                          "name": "email-label",
+                                          "children": [{"content": "Email:", "type": "static "}]
+                                        }
+                                      },
+                                      {
+                                        "type": "element",
+                                        "content": {
+                                          "elemenType": "textinput",
+                                          "name": "email-input",
+                                          "attrs": {
+                                            "name": { "type":"static", "content": "email"}
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "type": "element",
+                                  "content": {
+                                    "elementType": "container",
+                                    "name": "pass-group",
+                                    "children": [
+                                      {
+                                        "type": "element",
+                                        "content": {
+                                          "elementType": "label",
+                                          "name": "pass-label",
+                                          "children": ["Password:"]
+                                        }
+                                      },
+                                      {
+                                        "type": "element",
+                                        "content": {
+                                          "elementType": "passwordinput",
+                                          "name": "pass-input",
+                                          "attrs": {
+                                            "name": {"type":"static", "content": "pass" }
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "type": "element",
+                                  "content": {
+                                    "elementType": "button",
+                                    "name": "submit",
+                                    "children": [{
+                                      "type":"static", "content": "Login"
+                                    }]
+                                  }
+                                }
+                              ]
+                            }
                           }
                         ]
                       }
@@ -261,7 +338,7 @@
                   },
                   "data-email-input": {
                     "type": "static",
-                    "contnet": ""
+                    "content": ""
                   }
                 }
               }
@@ -273,7 +350,7 @@
                 "attrs": {
                   "data-submit-email": {
                     "type": "static",
-                    "contnet": ""
+                    "content": ""
                   }
                 },
                 "children": [
