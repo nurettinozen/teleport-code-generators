@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/teleporthq/teleport-code-generators/master/src/uidl-definitions/schemas/project.json",
+  "$schema": "https://raw.githubusercontent.com/teleporthq/teleport-code-generators/release/0.6/src/uidl-definitions/schemas/project.json",
   "name": "myVueProject",
   "globals": {
     "settings": {
@@ -121,13 +121,13 @@
                                         "content" : {
                                           "elementType": "label",
                                           "name": "email-label",
-                                          "children": [{"content": "Email:", "type": "static "}]
+                                          "children": [{"content": "Email:", "type": "static"}]
                                         }
                                       },
                                       {
                                         "type": "element",
                                         "content": {
-                                          "elemenType": "textinput",
+                                          "elementType": "textinput",
                                           "name": "email-input",
                                           "attrs": {
                                             "name": { "type":"static", "content": "email"}
@@ -148,7 +148,12 @@
                                         "content": {
                                           "elementType": "label",
                                           "name": "pass-label",
-                                          "children": ["Password:"]
+                                          "children": [
+                                            {
+                                              "type": "static", 
+                                              "content": "Password:"
+                                            }
+                                          ]
                                         }
                                       },
                                       {
